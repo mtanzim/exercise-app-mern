@@ -1,10 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+import userRoutes from './user/user.route';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  // res.render('index', { title: 'Express' });
-  res.send('OK');
-});
+module.exports = function () {
 
-module.exports = router;
+  const router = express.Router();
+
+  router
+    .get('/health-check', (req, res, next) => res.send('OK!'))
+    .use('/users', userRoutes)
+
+  return router;
+}

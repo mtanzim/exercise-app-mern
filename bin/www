@@ -5,8 +5,30 @@
  */
 require('dotenv').config();
 var app = require('../app');
+const util = require('util');
 var debug = require('debug')('exercisetrackerapp:server');
 var http = require('http');
+
+
+const mongoose = require('mongoose');
+
+// connect to mongoose
+util.log(process.env.MONGO_URI_LOC);
+let mongoUri;
+if (process.env.NODE_ENV === 'production') mongoUri = process.env.MONGO_URI;
+else mongoUri = process.env.MONGO_URI_LOC;
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true
+})
+  .then(() => {
+    util.log(`Connected to Mongo on ${mongoUri}`)
+  },
+  (err) => {
+    util.log(err);
+    throw err;
+  }
+);
 
 /**
  * Get port from environment and store in Express.
@@ -87,4 +109,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  util.log('Listening on ' + bind);
 }

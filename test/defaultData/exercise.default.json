@@ -4,13 +4,13 @@
     "title": "Bicep Curls",
     "weight": 45,
     "unit" : "lbs",
-    "sets": [12, 99, 12]
+    "targetSets": [12, 99, 12]
 
   },
   {
     "type": "cardio",
     "title": "Jogging",
-    "time" : 4500,
+    "targetTime" : 4500,
     "unitTime": "ms"
   }
 ]

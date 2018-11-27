@@ -1,0 +1,16 @@
+[
+  {
+    "type": "strength",
+    "title": "Bicep Curls",
+    "weight": 45,
+    "unit" : "lbs",
+    "sets": [12, 99, 12]
+
+  },
+  {
+    "type": "cardio",
+    "title": "Jogging",
+    "time" : 4500,
+    "unitTime": "ms"
+  }
+]

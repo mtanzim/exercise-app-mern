@@ -21,6 +21,10 @@ let CardioExercise = new Schema({
     enum: [MS],
     required: true
   },
+  deleted: {
+    type:Boolean,
+    default: false,
+  }
 }, {
   timestamps: true,
 

@@ -5,6 +5,7 @@ import StrengthExercise from './StrengthExercise';
 
 let Schema = mongoose.Schema;
 let ActualStrengthExercise = new Schema({
+  // _user: commonUser(CardioExercise),
   hostExercise: commonHostExercise(StrengthExercise, STRENGTH),
   unit: {
     type:String,

@@ -22,26 +22,49 @@ export const hostValidator = (model, type) => ({
       model.findById(val)
         .then(res => {
           resolve(res.type === type);
-        });
-    })
+        })
+        .catch(err => reject(new Error(err)));
+    }); 
   },
   message: props => (`${props.value} is not of type ${type}`)
+});
+
+export const userValidator = (model) => ({
+  validator: val => {
+    return new Promise( (resolve, reject) =>{
+      model.findById(val)
+        .then(res => {
+          resolve(ObjectId(res._id) === ObjectId(val._id));
+        })
+        .catch(err => reject(new Error(err)));
+    }); 
+  },
+  message: props => (`${props.value} does not belong to user`)
+
+});
+
+
+
+export const commonUser = model => ({
+  type: ObjectId,
+  required: true,
+  validate: userValidator(model)
 });
 
 export const commonExerciseDesc = {
   type: String,
   maxlength: [250, 'Exercise description is too long!'],
   required: false,
-}
+};
 
-export const commonHostExercise = {
+export const commonHostExercise = (model, type) => ({
   type: ObjectId,
   required: true,
-  validate: hostValidator(CARDIO),
-}
+  validate: hostValidator(model, type),
+});
 
 export const commonTitle = {
   type: String,
   maxlength: [25, 'Exercise title is too long!'],
   required: [true, 'Exercise title can not be empty'],
-}
+};

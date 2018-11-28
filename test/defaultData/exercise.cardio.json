@@ -1,4 +1,10 @@
-{
-  "actualTime": 3600,
-  "unitTime": "ms"
-}
+[
+  {
+    "actualTime": 65,
+    "unitTime": "ms"
+  },
+  {
+    "actualTime": 45,
+    "unitTime": "ms"
+  }
+]

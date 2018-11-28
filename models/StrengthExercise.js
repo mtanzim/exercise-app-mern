@@ -1,5 +1,5 @@
 import mongoose  from 'mongoose';
-import {numberValidator, commonExerciseDesc, commonTitle, STRENGTH, KG, LBS} from './common'
+import {numberValidator, commonExerciseDesc, commonTitle, STRENGTH, KG, LBS} from './common';
 
 let Schema = mongoose.Schema;
 let StrengthExercise = new Schema({
@@ -22,9 +22,13 @@ let StrengthExercise = new Schema({
   },
   targetSets: [{
     type: Number,
-    required: [true, "Please provide at least one set of reps"],
+    required: [true, 'Please provide at least one set of reps'],
     validate: numberValidator(0,1000),
   }],
+  deleted: {
+    type: Boolean,
+    default: false,
+  }
 }, {
   timestamps: true,
 

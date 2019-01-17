@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 require("dotenv").config();
+
 var app = require("../app");
 const util = require("util");
 var debug = require("debug")("exercisetrackerapp:server");
@@ -15,8 +16,9 @@ const mongoose = require("mongoose");
 // util.log(process.env.MONGO_URI_LOC);
 let mongoUri;
 if (process.env.NODE_ENV === "production") mongoUri = process.env.MONGO_URI;
-else mongoUri = process.env.MONGO_URI_LOC;
+else mongoUri = process.env.MONGO_URI_LOC+process.env.MONGO_DB_NAME;
 mongoose.Promise = global.Promise;
+console.log(mongoUri)
 mongoose
   .connect(
     mongoUri,

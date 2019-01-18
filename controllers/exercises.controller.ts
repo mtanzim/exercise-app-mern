@@ -3,7 +3,7 @@ import CardioExercise from "../models/CardioExercise";
 import ActualCardioExercise from "../models/ActualCardioExercise";
 import ActualStrengthExercise from "../models/ActualStrengthExercise";
 
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 let ObjectId = mongoose.Types.ObjectId;
 
 import { CARDIO, STRENGTH } from "../models/common";

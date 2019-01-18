@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 import {
   numberValidator,
   commonHostExercise,
@@ -13,6 +13,7 @@ let Schema = mongoose.Schema;
 let ActualStrengthExercise = new Schema(
   {
     // _user: commonUser(CardioExercise),
+    // @ts-ignore
     hostExercise: commonHostExercise(StrengthExercise, STRENGTH),
     unit: {
       type: String,

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 import {
   numberValidator,
   hostValidator,
@@ -14,7 +14,7 @@ let Schema = mongoose.Schema;
 
 let ActualCardioExercise = new Schema(
   {
-    // _user: commonUser(CardioExercise),
+    // @ts-ignore
     hostExercise: commonHostExercise(CardioExercise, CARDIO),
     actualTime: {
       type: Number,

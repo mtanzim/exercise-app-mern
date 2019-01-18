@@ -1,6 +1,6 @@
 // import CardioExercise from './CardioExercise';
 // import StrengthExercise from './StrengthExercise';
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 let ObjectId = mongoose.Schema.Types.ObjectId;
 
 export const CARDIO = "cardio";
@@ -36,7 +36,7 @@ export const userValidator = model => ({
       model
         .findById(val)
         .then(res => {
-          resolve(ObjectId(res._id) === ObjectId(val._id));
+          resolve(new ObjectId(res._id) === new ObjectId(val._id));
         })
         .catch(err => reject(new Error(err)));
     });

@@ -3,7 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var util = require("util");
+var nodeUtil = require("util");
 
 const session = require("express-session");
 
@@ -26,10 +26,11 @@ app.use(
   })
 );
 
+// app.get('/', (req,res,next) => res.send('OK'))
 app.use("/api", router());
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use( (req, res, next) => {
   // res.json(err);
   // next(createError(404));
   var error = new Error("Not found!");
@@ -39,8 +40,8 @@ app.use(function(req, res, next) {
 // error handler
 app.use((err, req, res, next) => {
   if (process.env.NODE_ENV === "dev") {
-    util.log(err.stack);
-    util.log(err.message);
+    nodeUtil.log(err.stack);
+    nodeUtil.log(err.message);
     res.status(500).send(err.message);
   } else {
     res.status(500).send("Not Found!");

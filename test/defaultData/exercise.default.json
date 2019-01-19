@@ -1,16 +1,13 @@
 [
   {
     "type": "strength",
-    "title": "Bicep Curls",
-    "weight": 45,
-    "unit" : "lbs",
-    "targetSets": [12, 99, 12]
+    "title": "Bicep Curls" ,
+    "desc": "great fucking exercise!"
 
   },
   {
     "type": "cardio",
     "title": "Jogging",
-    "targetTime" : 4500,
-    "unitTime": "ms"
+    "desc": "great fucking exercise!"
   }
 ]

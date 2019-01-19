@@ -18,7 +18,7 @@ let CardioExercise = new Schema(
       enum: [CARDIO]
     },
     desc: commonExerciseDesc,
-    targetTime: {
+/*     targetTime: {
       type: Number,
       validate: numberValidator(0, 86400000),
       required: true
@@ -27,7 +27,7 @@ let CardioExercise = new Schema(
       type: String,
       enum: [MS],
       required: true
-    },
+    }, */
     deleted: {
       type: Boolean,
       default: false

@@ -1,16 +1,14 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var nodeUtil = require("util");
+import * as mongoose from "mongoose";
+import * as http from "http";
+import * as express from "express";
+import * as logger from "morgan";
+import * as session from "express-session";
+import * as path from "path";
+import * as cookieParser from "cookie-parser";
+import * as nodeUtil from "util";
+import createRouter from "./routes";
 
-const session = require("express-session");
-
-// var indexRouter = require('./routes/index');
-var router = require("./routes");
-
-var app = express();
+let app = express();
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -26,14 +24,10 @@ app.use(
   })
 );
 
-// app.get('/', (req,res,next) => res.send('OK'))
-app.use("/api", router());
-
+app.use("/api", createRouter());
 // catch 404 and forward to error handler
-app.use( (req, res, next) => {
-  // res.json(err);
-  // next(createError(404));
-  var error = new Error("Not found!");
+app.use((req, res, next) => {
+  let error = new Error("Not found!");
   next(error);
 });
 
@@ -47,15 +41,5 @@ app.use((err, req, res, next) => {
     res.status(500).send("Not Found!");
   }
 });
-/* app.use(function(err, req, res) {
-  console.log('Coming to error handler');
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.json(err);
-}); */
-
-module.exports = app;
+export default app;

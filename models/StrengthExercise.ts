@@ -17,7 +17,7 @@ let StrengthExercise = new Schema(
       enum: [STRENGTH]
     },
     desc: commonExerciseDesc,
-    weight: {
+/*     weight: {
       type: Number,
       required: true,
       validate: numberValidator(0, 2000)
@@ -33,7 +33,7 @@ let StrengthExercise = new Schema(
         required: [true, "Please provide at least one set of reps"],
         validate: numberValidator(0, 1000)
       }
-    ],
+    ], */
     deleted: {
       type: Boolean,
       default: false
@@ -44,8 +44,8 @@ let StrengthExercise = new Schema(
   }
 );
 
-StrengthExercise.path("targetSets").validate(function(v) {
+/* StrengthExercise.path("targetSets").validate(function(v) {
   return v.length > 0;
-});
+}); */
 
 export default mongoose.model("StrengthExercise", StrengthExercise);

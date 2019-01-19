@@ -2,7 +2,7 @@ import * as express from "express";
 import userRoutes from "./user.route";
 import exerciseRoutes from "./exercise.route";
 
-module.exports = function() {
+const createRouter = function() {
   const router = express.Router();
   router
     .get("/", (req, res, next) => res.send("root"))
@@ -12,3 +12,5 @@ module.exports = function() {
 
   return router;
 };
+
+export default createRouter;

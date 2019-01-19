@@ -1,20 +1,24 @@
-require("dotenv").load();
-const connectMongoose = require("./helpers/connectMongoose");
+const dotEnv = require("dotenv").config();
+/* if (dotEnv.error) throw dotEnv.error;
+console.log(dotEnv.parsed) */
+// const connectMongoose = require("./helpers/connectMongoose");
+
+import connectMongoose from "../db";
+import app from "../app";
+import { CARDIO, STRENGTH } from "../models/common";
+
 const expect = require("chai").expect;
 const request = require("supertest");
-const app = require("../app");
-// const app = App();
 
 const defaultExercise = require("./defaultData/exercise.default");
 const defaultCardioExercise = require("./defaultData/exercise.cardio.json");
 const defaultStrengthExercise = require("./defaultData/exercise.strength.json");
 
-import { CARDIO, STRENGTH } from "../models/common";
 
 describe("API Mongoose", function() {
   this.timeout(4000);
   before(function(done) {
-    connectMongoose().then(() => done());
+    connectMongoose(done);
   });
 
   describe("API.exercise", function() {

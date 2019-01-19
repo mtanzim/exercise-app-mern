@@ -9,4 +9,3 @@ Review full stack fundamentals by building this app. Following aspects will be c
   - Mocha/Chai
 - Front end design with:
   - React/Redux
-

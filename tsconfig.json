@@ -6,4 +6,5 @@
     "allowJs": true,
     "target": "es6"
   },
+  "exclude": ["test/"]
 }

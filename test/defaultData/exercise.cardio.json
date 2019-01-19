@@ -1,10 +1,4 @@
-[
-  {
-    "actualTime": 65,
-    "unitTime": "ms"
-  },
-  {
-    "actualTime": 45,
-    "unitTime": "ms"
-  }
-]
+[{
+  "actualSets": [12,56,32, 55],
+  "unit": "s"
+}]

@@ -1,10 +1,8 @@
-// import CardioExercise from './CardioExercise';
-// import StrengthExercise from './StrengthExercise';
 import * as mongoose from "mongoose";
 let ObjectId = mongoose.Schema.Types.ObjectId;
 
 export const CARDIO = "cardio";
-export const MS = "ms";
+export const S = "s";
 export const STRENGTH = "strength";
 export const KG = "kg";
 export const LBS = "lbs";
@@ -16,18 +14,19 @@ export const numberValidator = (min, max) => ({
   message: props => `${props.value} is not between ${min} and ${max}`
 });
 
-export const hostValidator = (model, type) => ({
+export const hostValidator = model => ({
   validator: val => {
     return new Promise((resolve, reject) => {
       model
         .findById(val)
         .then(res => {
-          resolve(res.type === type);
+          // console.log(res)
+          resolve(true);
         })
         .catch(err => reject(new Error(err)));
     });
   },
-  message: props => `${props.value} is not of type ${type}`
+  message: props => `${props.value} doesn't belong to an exercise.`
 });
 
 export const userValidator = model => ({
@@ -56,10 +55,10 @@ export const commonExerciseDesc = {
   required: false
 };
 
-export const commonHostExercise = (model, type) => ({
+export const commonHostExercise = model => ({
   type: ObjectId,
   required: true,
-  validate: hostValidator(model, type)
+  validate: hostValidator(model)
 });
 
 export const commonTitle = {

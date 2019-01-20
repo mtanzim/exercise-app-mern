@@ -49,20 +49,9 @@ export const commonUser = model => ({
   validate: userValidator(model)
 });
 
-export const commonExerciseDesc = {
-  type: String,
-  maxlength: [250, "Exercise description is too long!"],
-  required: false
-};
-
 export const commonHostExercise = model => ({
   type: ObjectId,
   required: true,
   validate: hostValidator(model)
 });
 
-export const commonTitle = {
-  type: String,
-  maxlength: [25, "Exercise title is too long!"],
-  required: [true, "Exercise title can not be empty"]
-};

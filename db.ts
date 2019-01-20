@@ -4,7 +4,7 @@ import * as util from "util";
 export default cb => {
   mongoose
     .connect(
-      process.env.MONGO_URI_LOC+process.env.MONGO_DB_NAME,
+      process.env.MONGO_URI_LOC + process.env.MONGO_DB_NAME,
       {
         useNewUrlParser: true
       }

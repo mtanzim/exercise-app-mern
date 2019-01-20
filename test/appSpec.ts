@@ -14,7 +14,6 @@ const defaultExercise = require("./defaultData/exercise.default");
 const defaultCardioExercise = require("./defaultData/exercise.cardio.json");
 const defaultStrengthExercise = require("./defaultData/exercise.strength.json");
 
-
 describe("API Mongoose", function() {
   this.timeout(4000);
   before(function(done) {
@@ -41,6 +40,7 @@ describe("API Mongoose", function() {
         .send(defaultExercise)
         .expect(200)
         .end(function(err, res) {
+          if (err) return done(new Error(res.text));
           let resData = JSON.parse(res.text);
           exerciseTemplates = resData.map(elem => {
             return {
@@ -49,7 +49,6 @@ describe("API Mongoose", function() {
             };
           });
           // console.log(exerciseTemplates);
-          if (err) return done(new Error(res.text));
           return done();
         });
     });

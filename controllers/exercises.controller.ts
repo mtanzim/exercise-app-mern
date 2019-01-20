@@ -19,12 +19,28 @@ export const createExercise = bodyArr => {
   );
 };
 
+export const readExercise = id => {
+  //
+};
+
+export const readAllExercise = (method, id) => {
+  //
+};
+
+export const updateExercise = id => {
+  //
+};
+
+export const deleteExercise = id => {
+    return ActualExercise.findByIdAndDelete(id)
+};
+
 export const createActualExercise = (type, bodyArr) => {
   return Promise.all(
     bodyArr.map(body => {
       // convert to object id
       body._id = ObjectId(body._id);
-      let newActualExercise = new ActualExercise(body)
+      let newActualExercise = new ActualExercise(body);
       return newActualExercise.save();
     })
   );

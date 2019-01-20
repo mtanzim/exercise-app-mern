@@ -1,14 +1,5 @@
 import Exercise from "../models/Exercise";
-import ActualExercise from "../models/ActualExercise";
-
 import * as mongoose from "mongoose";
-let ObjectId = mongoose.Types.ObjectId;
-
-import { CARDIO, STRENGTH } from "../models/common";
-
-export const getAllExercises = () => {
-  let body;
-};
 
 export const createExercise = bodyArr => {
   return Promise.all(
@@ -20,28 +11,22 @@ export const createExercise = bodyArr => {
 };
 
 export const readExercise = id => {
-  //
+  return Exercise.findById(id);
 };
 
-export const readAllExercise = (method, id) => {
-  //
+export const readAllExercise = () => {
+  return Exercise.find({});
 };
 
-export const updateExercise = id => {
-  //
+export const updateExercise = (id, body) => {
+  return Exercise.findByIdAndUpdate(id,  body, { new: true });
 };
 
 export const deleteExercise = id => {
-    return ActualExercise.findByIdAndDelete(id)
+  return Exercise.findByIdAndDelete(id);
+};
+export const softDeleteExercise = id => {
+  return Exercise.findByIdAndUpdate(id, { deleted: true }, { new: true });
 };
 
-export const createActualExercise = (type, bodyArr) => {
-  return Promise.all(
-    bodyArr.map(body => {
-      // convert to object id
-      body._id = ObjectId(body._id);
-      let newActualExercise = new ActualExercise(body);
-      return newActualExercise.save();
-    })
-  );
-};
+

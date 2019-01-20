@@ -21,6 +21,11 @@ let ActualExercise = new Schema(
       enum: [S, KG, LBS],
       required: true
     },
+    note: {
+      type: String,
+      maxlength: [250, "Exercise description is too long!"],
+      required: false
+    },
     actualSets: [
       {
         type: Number,

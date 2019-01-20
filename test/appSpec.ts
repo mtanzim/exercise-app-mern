@@ -52,8 +52,9 @@ describe("API Mongoose", function() {
           return done();
         });
     });
+    // actual exercises need to be redesigned
 
-    it("POST actual exercises", function() {
+/*     it("POST actual exercises", function() {
       return (
         Promise.all(
           exerciseTemplates.map(function(template) {
@@ -91,6 +92,6 @@ describe("API Mongoose", function() {
             expect(err).to.be.null;
           })
       );
-    });
+    }); */
   });
 });

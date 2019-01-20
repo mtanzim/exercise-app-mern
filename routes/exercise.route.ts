@@ -1,46 +1,31 @@
 import * as express from "express";
 import {
   createExercise,
-  createActualExercise,
+  readExercise,
+  readAllExercise,
   deleteExercise,
-  getAllExercises
+  softDeleteExercise,
+  updateExercise
 } from "../controllers/exercises.controller";
-import { STRENGTH, CARDIO } from "../models/common";
+
+import { generateResponseFunc, InputType } from "./responseHelpers";
 
 let router = express.Router();
 
 /* GET users listing. */
 router
   .get("/health-check", (req, res, next) => res.send("OK"))
-  .get("/", function(req, res, next) {
-    return res.send("OK");
-    /*     getAllExercises()
-      .then(result => res.json(result))
-      .catch(err => next(err)); */
-  })
-  .post("/", function(req, res, next) {
-    createExercise(req.body)
-      .then(result => res.json(result))
-      .catch(err => next(err));
-  })
-  .delete("/:id", async (req,res, next) => {
-    let result;
-    try {
-      result = await deleteExercise(req.params.id)
-    } catch(err) {
-      return next(err)
-    }
-    return res.json(result)
-  })
-  .post(`/${CARDIO}`, function(req, res, next) {
-    createActualExercise(CARDIO, req.body)
-      .then(result => res.json(result))
-      .catch(err => next(err));
-  })
-  .post(`/${STRENGTH}`, function(req, res, next) {
-    createActualExercise(STRENGTH, req.body)
-      .then(result => res.json(result))
-      .catch(err => next(err));
-  });
+  // create
+  .post("/", generateResponseFunc(InputType.BODY, createExercise))
+  // read
+  .get("/:id", generateResponseFunc(InputType.ID, readExercise))
+  // readall
+  .get("/", generateResponseFunc(InputType.NONE, readAllExercise))
+  // update
+  .put("/:id", generateResponseFunc(InputType.ID_BODY, updateExercise))
+  // delete
+  .delete("/:id", generateResponseFunc(InputType.ID, deleteExercise))
+  // soft delete
+  .delete("/soft/:id", generateResponseFunc(InputType.ID, softDeleteExercise));
 
 export default router;

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon --exec ts-node index.ts",
-    "build": "tsc --w",
+    "build": "tsc",
     "start": "tsc && node ./dist/index.js",
     "test": "mocha -r ts-node/register test/appSpec.ts --exit"
   },
@@ -26,6 +26,7 @@
     "@types/mocha": "^5.2.5",
     "@types/mongoose": "^5.3.8",
     "@types/node": "^10.12.18",
+    "@types/supertest": "^2.0.7",
     "chai": "^4.2.0",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",

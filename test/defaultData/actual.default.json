@@ -1,8 +1,8 @@
 [
   {
-    "actualSets": [12, 56, 32],
-    "unit": "lbs"
-  }, 
+    "actualSets": [12,56,32, 55],
+    "unit": "s"
+  },
   {
     "actualSets": [12, 45, 32],
     "unit": "lbs"

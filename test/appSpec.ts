@@ -13,6 +13,6 @@ describe("API Mongoose", function() {
     connectMongoose(done);
   });
 
-  // describe("API.exercise", exerciseSpec)
-  describe("API.actuals", actualSpec)
+  describe("API.exercise", exerciseSpec)
+  // describe("API.actuals", actualSpec)
 });

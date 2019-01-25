@@ -1,10 +1,12 @@
 [
   {
     "actualSets": [12,56,32, 55],
-    "unit": "s"
+    "unit": "s",
+    "note": "kick-ass"
   },
   {
     "actualSets": [12, 45, 32],
-    "unit": "lbs"
+    "unit": "lbs",
+    "note": "kick-ass"
   }
 ]

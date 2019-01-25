@@ -1,5 +1,7 @@
 # Exercise Tracking App with MERN
 
+[Project Planning](https://trello.com/b/uICmF13r/exercise-app)
+
 Review full stack fundamentals by building this app. Following aspects will be covered:
 
 - Back end design with:

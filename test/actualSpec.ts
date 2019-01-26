@@ -38,13 +38,13 @@ const actualSpec = function() {
         exerciseTemplates.forEach(function(template) {
           // console.log(template)
           if (template.type === CARDIO) {
-            cardioBodies = actualExercise.filter(item => item.unit === S)
+            cardioBodies = actualExercise.filter(item => item.timedSets !== undefined)
             cardioBodies = cardioBodies.map(elem => ({
               ...elem,
               hostExercise: template._id
             }));
           } else if (template.type === STRENGTH) {
-            strengthBodies = actualExercise.filter(item => [KG, LBS].indexOf(item.unit) > -1)
+            strengthBodies = actualExercise.filter(item => item.weightedSets !== undefined)
             strengthBodies = strengthBodies.map(elem => ({
               ...elem,
               hostExercise: template._id
@@ -63,7 +63,7 @@ const actualSpec = function() {
           .send(allBodies)
           .expect(200)
           .then(res => {
-            // console.log(res.text);
+            console.log(res.text);
             // JSON.parse(res.text).forEach(element => {
             //   expect(element).to.haveOwnProperty("_id");
             //   console.log(res.body)

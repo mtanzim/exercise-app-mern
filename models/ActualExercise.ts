@@ -16,21 +16,42 @@ let ActualExercise = new Schema(
   {
     // @ts-ignore
     hostExercise: commonHostExercise(Exercise),
-    unit: {
-      type: String,
-      enum: [S, KG, LBS],
-      required: true
-    },
     note: {
       type: String,
       maxlength: [250, "Exercise description is too long!"],
       required: false
     },
-    actualSets: [
+    weightedSets: [
       {
-        type: Number,
-        required: [true, "Please provide at least one set of reps"],
-        validate: numberValidator(0, 1000)
+        weight: {
+          type: Number,
+          validate: numberValidator(0, 1000),
+          required: true
+        },
+        weightUnit: {
+          type: String,
+          enum: [KG, LBS],
+          required: true
+        },
+        count: {
+          type: Number,
+          required: [true, "Please provide at least one set of reps"],
+          validate: numberValidator(0, 1000)
+        }
+      }
+    ],
+    timedSets: [
+      {
+        time: {
+          type: Number,
+          validate: numberValidator(0, 1000),
+          required: true
+        },
+        timeUnit: {
+          type: String,
+          enum: [S],
+          required: true
+        }
       }
     ]
   },
@@ -39,24 +60,31 @@ let ActualExercise = new Schema(
   }
 );
 
-ActualExercise.path("actualSets").validate(function(v) {
-  return v.length > 0;
-});
-
-ActualExercise.path("unit").validate(function(val) {
+const validateSets = function(val) {
   return new Promise((resolve, reject) => {
     Exercise.findById(this.hostExercise)
       .then(res => {
         // @ts-ignore
         if (res.type === CARDIO) {
-          resolve([S].indexOf(val) > -1);
+          if (this.timedSets.length > 0) {
+            resolve();
+          } else {
+            reject (new Error("Please provide timed sets!"));
+          }
           // @ts-ignore
         } else if (res.type === STRENGTH) {
-          resolve([KG, LBS].indexOf(val) > -1);
+          if (this.weightedSets.length > 0) {
+            resolve();
+          } else {
+            reject (new Error("Please weighted timed sets!"));
+          }
         }
       })
       .catch(err => reject(new Error(err)));
   });
-});
+};
+
+ActualExercise.path("weightedSets").validate(validateSets);
+ActualExercise.path("timedSets").validate(validateSets);
 
 export default mongoose.model("ActualExercise", ActualExercise);

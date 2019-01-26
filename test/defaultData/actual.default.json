@@ -1,12 +1,27 @@
 [
   {
-    "actualSets": [12,56,32, 55],
-    "unit": "s",
-    "note": "kick-ass"
+    "note": "kick lots of ass from MOCHA!",
+    "weightedSets": [
+      {
+        "weight": 45,
+        "weightUnit": "lbs",
+        "count": 10
+      },
+      {
+        "weight": 45,
+        "weightUnit": "lbs",
+        "count": 12
+      }
+    ]
   },
   {
-    "actualSets": [12, 45, 32],
-    "unit": "lbs",
-    "note": "kick-ass"
+    "hostExercise": "5c4b610fecf4230ef9797dd6",
+    "note": "kick lots of ass cardio from MOCHA!",
+    "timedSets": [
+      {
+        "time": 45,
+        "timeUnit": "s"
+      }
+    ]
   }
 ]

@@ -1,5 +1,4 @@
 import Exercise from "../models/Exercise";
-import * as mongoose from "mongoose";
 
 export const createExercise = bodyArr => {
   return Promise.all(
@@ -11,7 +10,7 @@ export const createExercise = bodyArr => {
 };
 
 export const readExercise = id => {
-  return Exercise.findById(id);
+  return Exercise.findOne({"_id":id});
 };
 
 export const readAllExercise = () => {
@@ -19,14 +18,12 @@ export const readAllExercise = () => {
 };
 
 export const updateExercise = (id, body) => {
-  return Exercise.findByIdAndUpdate(id,  body, { new: true });
+  return Exercise.findOneAndUpdate({"_id":id}, body, { new: true });
 };
 
 export const deleteExercise = id => {
-  return Exercise.findByIdAndDelete(id);
+  return Exercise.findOneAndDelete({"_id":id});
 };
 export const softDeleteExercise = id => {
-  return Exercise.findByIdAndUpdate(id, { deleted: true }, { new: true });
+  return Exercise.findOneAndUpdate({"_id":id}, { deleted: true }, { new: true });
 };
-
-

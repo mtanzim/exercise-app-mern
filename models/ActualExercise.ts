@@ -62,21 +62,45 @@ let ActualExercise = new Schema(
 
 const validateSets = function(val) {
   return new Promise((resolve, reject) => {
-    Exercise.findById(this.hostExercise)
+    let hostId;
+    let timedSets;
+    let weightedSets;
+    // console.log(this.getUpdate().$set)
+    try {
+      // console.log('Updating object!')
+      hostId = this.getUpdate().$set.hostExercise;
+      timedSets = this.getUpdate().$set.timedSets;
+      weightedSets = this.getUpdate().$set.weightedSets;
+    } catch(err) {
+      // console.log(err);
+      try{
+        // console.log('Creating new object!')
+        hostId = this.hostExercise;
+        timedSets = this.timedSets;
+        weightedSets = this.weightedSets;
+      } catch(err) {
+        // console.log(err)
+        reject(new Error(err));
+      }
+    }
+    // console.log(hostId);
+
+    Exercise.findOne({ _id: hostId })
       .then(res => {
+        // console.log(res)
         // @ts-ignore
         if (res.type === CARDIO) {
-          if (this.timedSets.length > 0) {
+          if (timedSets.length > 0) {
             resolve();
           } else {
-            reject (new Error("Please provide timed sets!"));
+            reject(new Error("Please provide timed sets!"));
           }
           // @ts-ignore
         } else if (res.type === STRENGTH) {
-          if (this.weightedSets.length > 0) {
+          if (weightedSets.length > 0) {
             resolve();
           } else {
-            reject (new Error("Please weighted timed sets!"));
+            reject(new Error("Please weighted timed sets!"));
           }
         }
       })
@@ -86,5 +110,11 @@ const validateSets = function(val) {
 
 ActualExercise.path("weightedSets").validate(validateSets);
 ActualExercise.path("timedSets").validate(validateSets);
+
+ActualExercise.pre("findOneAndUpdate", function(next) {
+  // @ts-ignore
+  this.options.runValidators = true;
+  next();
+});
 
 export default mongoose.model("ActualExercise", ActualExercise);

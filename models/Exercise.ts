@@ -1,5 +1,5 @@
 import * as mongoose from "mongoose";
-import {  STRENGTH, CARDIO } from "./common";
+import { STRENGTH, CARDIO } from "./common";
 
 let Schema = mongoose.Schema;
 let Exercise = new Schema(
@@ -9,7 +9,7 @@ let Exercise = new Schema(
       maxlength: [25, "Exercise title is too long!"],
       required: [true, "Exercise title can not be empty"],
       unique: true,
-      dropDups: true,
+      dropDups: true
     },
     type: {
       type: String,
@@ -29,5 +29,11 @@ let Exercise = new Schema(
     timestamps: true
   }
 );
+
+Exercise.pre("findOneAndUpdate", function(next) {
+  // @ts-ignore
+  this.options.runValidators = true;
+  next();
+});
 
 export default mongoose.model("Exercise", Exercise);

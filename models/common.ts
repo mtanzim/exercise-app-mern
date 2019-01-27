@@ -54,4 +54,3 @@ export const commonHostExercise = model => ({
   required: true,
   validate: hostValidator(model)
 });
-

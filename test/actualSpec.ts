@@ -75,16 +75,39 @@ const actualSpec = function() {
   });
 
   it("GET actual exercises", function(done) {
+
     Promise.all(allIds.map(id => {
       return request(app)
       .get(`/api/actual/${id}`)
       .set("Accept", "application/json")
+      .send()
       .send()
       .expect(200)
       .then(res => {
         const result = JSON.parse(res.text);
         // console.log(result);
         expect(result._id).to.equal(id);
+      })
+    }))
+    .then (res => {
+      done();
+    })
+  });
+
+  it("UPDATE actual exercises", function(done) {
+    const update = {
+      "note": "updated from MOCHA!"
+    }
+    Promise.all(allIds.map(id => {
+      return request(app)
+      .put(`/api/actual/${id}`)
+      .set("Accept", "application/json")
+      .send(update)
+      .expect(200)
+      .then(res => {
+        const result = JSON.parse(res.text);
+        expect(result._id).to.equal(id);
+        expect(result["note"]).to.equal(update["note"]);
       })
     }))
     .then (res => {

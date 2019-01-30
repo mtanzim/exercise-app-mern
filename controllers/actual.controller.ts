@@ -20,10 +20,6 @@ export const readActual = id => {
 
 export const updateActual = async (id, body) => {
   // validators require host id to ensure wrong exercise sets won't be used
-  // @ts-ignore
-  // console.log(body);
-  // const host
-
   const currentActual = await readActual(id);
   // console.log(body);
   body = { ...body, hostExercise: currentActual["hostExercise"] };

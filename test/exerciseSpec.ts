@@ -3,79 +3,62 @@ import * as fs from "fs";
 import { expect } from "chai";
 // const expect = require("chai").expect;
 import * as request from "supertest";
-
-const defaultExercise = require("./defaultData/exercise.default");
+import { createExercise, deleteExercise } from "./common";
 
 const exerciseSpec = function() {
-  let exerciseTemplates = [];
+  let exerciseTemplates: object[] = [];
 
-  it("GETS health check", function(done) {
-    request(app)
+  it("GETS health check", async () => {
+    const res = await request(app)
       .get(`/api/exercise/health-check`)
       .set("Accept", "application/json")
-      .expect(200)
-      .end(function(err, res) {
-        if (err) return done(new Error(res.text));
-        return done();
-      });
-  });
-  it("POST exercise templates", function(done) {
-    request(app)
-      .post(`/api/exercise/`)
-      .set("Accept", "application/json")
-      .send(defaultExercise)
-      .expect(200)
-      .end(function(err, res) {
-        if (err) return done(new Error(res.text));
-        let resData = JSON.parse(res.text);
-        exerciseTemplates = resData.map(elem => {
-          return {
-            _id: elem._id,
-            type: elem.type
-          };
-        });
-        // console.log(exerciseTemplates);
-        fs.writeFile(
-          "test/createdData/exerciseIds.json",
-          JSON.stringify(exerciseTemplates, null, 2),
-          err => {
-            if (err) return done(err);
-            console.log("Wrote IDs");
-            done();
-          }
-        );
-      });
+      .expect(200);
   });
 
-  it("READ exercise templates", function(done) {
-    request(app)
+  it("POST exercise templates", async () => {
+    exerciseTemplates = await createExercise();
+  });
+
+  it("READ exercise templates", async () => {
+    const res = await request(app)
       .get(`/api/exercise/`)
       .set("Accept", "application/json")
-      .expect(200)
-      .end(function(err, res) {
-        if (err) return done;
-        let resData = JSON.parse(res.text);
-        let checkIds = exerciseTemplates.map(item => {
-          return resData.find(resItem => resItem._id === item._id);
-        });
-        console.log(checkIds);
-        expect(checkIds.length).to.equal(exerciseTemplates.length);
-        done();
-      });
+      .expect(200);
+    let resData = JSON.parse(res.text);
+    let checkIds = exerciseTemplates.map(item => {
+      return resData.find(resItem => resItem._id === item["_id"]);
+    });
+    expect(checkIds.length).to.equal(exerciseTemplates.length);
   });
-  
-  it("READ One exercise template", function(done) {
-    expect(exerciseTemplates).to.have.lengthOf.above(0)
-    request(app)
-      .get(`/api/exercise/${exerciseTemplates[0]._id}`)
+
+  it("READ One exercise template", async () => {
+    expect(exerciseTemplates).to.have.lengthOf.above(0);
+    const res = await request(app)
+      .get(`/api/exercise/${exerciseTemplates[0]["_id"]}`)
       .set("Accept", "application/json")
-      .expect(200)
-      .end(function(err, res) {
-        if (err) return done;
-        let resData = JSON.parse(res.text);
-        expect(resData._id).to.equal(exerciseTemplates[0]._id);
-        done();
-      });
+      .expect(200);
+    let resData = JSON.parse(res.text);
+    expect(resData._id).to.equal(exerciseTemplates[0]["_id"]);
+  });
+
+  it("SOFT DELETE exercise templates", async () => {
+    await Promise.all(
+      exerciseTemplates.map(exercise => {
+        return request(app)
+          .delete(`/api/exercise/soft/${exercise["_id"]}`)
+          .set("Accept", "application/json")
+          .expect(200)
+          .then(res => {
+            let resData = JSON.parse(res.text);
+            expect(resData._id).to.equal(exercise["_id"]);
+            expect(resData["deleted"]).to.equal(true);
+          });
+      })
+    );
+  });
+
+  it("DELETE exercise templates", async () => {
+    await deleteExercise(exerciseTemplates);
   });
 };
 

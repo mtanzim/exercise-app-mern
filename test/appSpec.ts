@@ -4,8 +4,8 @@ console.log(dotEnv.parsed) */
 // const connectMongoose = require("./helpers/connectMongoose");
 
 import connectMongoose from "../db";
-import exerciseSpec from "./exerciseSpec"
-import actualSpec from "./actualSpec"
+import exerciseSpec from "./exerciseSpec";
+import actualSpec from "./actualSpec";
 
 describe("API Mongoose", function() {
   this.timeout(4000);
@@ -13,6 +13,6 @@ describe("API Mongoose", function() {
     connectMongoose(done);
   });
 
-  // describe("API.exercise", exerciseSpec)
-  describe("API.actuals", actualSpec)
+  describe("API.exercise", exerciseSpec);
+  describe("API.actuals", actualSpec);
 });

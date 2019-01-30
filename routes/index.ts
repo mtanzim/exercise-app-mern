@@ -10,7 +10,8 @@ const createRouter = function() {
     .get("/health-check", (req, res, next) => res.send("OK!"))
     .use("/users", userRoutes)
     .use("/exercise", exerciseRoutes)
-    .use("/actual", actualExerciseRoutes);
+    .use("/actual", actualExerciseRoutes)
+    .use("/routine", actualExerciseRoutes);
 
   return router;
 };

@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "a347fb97-52d7-4834-ab07-2ffbd2ffd5a2",
+		"name": "exerciseApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exercise",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"type\": \"cardio\",\n    \"title\": \"jogging 4\",\n    \"desc\": \"great!\"\n}]"
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "read",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/5c548840fe6407359a47b9d7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								"5c548840fe6407359a47b9d7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"bubbling\",\n    \"type\": \"strength\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/5c5488e9eed0bc363ae41542",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								"5c5488e9eed0bc363ae41542"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/\"5c51e2a964c86e275bb202a2\"",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								"\"5c51e2a964c86e275bb202a2\""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDel",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/exercise/soft/5c51df522754cf2233a6d564",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"exercise",
+								"soft",
+								"5c51df522754cf2233a6d564"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "actualExercises",
+			"item": [
+				{
+					"name": "createStrength",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n\t\"hostExercise\":\"5c4b610fecf4230ef9797dd5\",\n\t\"note\": \"kick lots of ass!\",\n\t\"weightedSets\": [{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"lbs\",\n\t\t\"count\": 10\n\t},\n\t{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"kg\",\n\t\t\"count\": 12\n\t}\n\t]\n}]"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCardio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n\t\"hostExercise\":\"5c4b610fecf4230ef9797dd6\",\n\t\"note\": \"kick lots of ass cardio!\",\n\t\"timedSets\": [{\n\t\t\"time\": 45,\n\t\t\"timeUnit\": \"s\"\n\t}]\n}]"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getActual",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n\t\"hostExercise\":\"5c4b610fecf4230ef9797dd5\",\n\t\"note\": \"kick lots of ass!\",\n\t\"weightedSets\": [{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"lbs\",\n\t\t\"count\": 10\n\t},\n\t{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"kg\",\n\t\t\"count\": 12\n\t}\n\t]\n}]"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/5c4dc69a673d352b2792ed11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								"5c4dc69a673d352b2792ed11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateActualCardio",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"note\": \"kick lots of ass cardio v2!\",\n\t\"timedSets\": [{\n\t\t\"time\": 55,\n\t\t\"timeUnit\": \"s\"\n\t},\n\t{\n\t\t\"time\": 55,\n\t\t\"timeUnit\": \"s\"\n\t},\n\t{\n\t\t\"time\": 55,\n\t\t\"timeUnit\": \"s\"\n\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/5c4dc686673d352b2792ed0b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								"5c4dc686673d352b2792ed0b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateActualStrength",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"note\": \"kick lots of ass cardio v2!\",\n\t\"weightedSets\": [{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"lbs\",\n\t\t\"count\": 145\n\t}]\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/5c4dc686673d352b2792ed0b",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								"5c4dc686673d352b2792ed0b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delActual",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n\t\"hostExercise\":\"5c4b610fecf4230ef9797dd5\",\n\t\"note\": \"kick lots of ass!\",\n\t\"weightedSets\": [{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"lbs\",\n\t\t\"count\": 10\n\t},\n\t{\n\t\t\"weight\": 45,\n\t\t\"weightUnit\": \"kg\",\n\t\t\"count\": 12\n\t}\n\t]\n}]"
+						},
+						"url": {
+							"raw": "localhost:3000/api/actual/5c4dc473826d222a075c0b11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"actual",
+								"5c4dc473826d222a075c0b11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "routines",
+			"item": [
+				{
+					"name": "health",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/health-check",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								"health-check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRoutine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"title\": \"jogging routine 31\",\n    \"desc\": \"great afF\",\n     \"exercises\": [\n        {\"exercise\": \"5c548845fe6407359a47b9d4\", \"qty\": 5},\n        {\"exercise\": \"5c548848fe6407359a47b9d5\", \"qty\": 1}\n    ]\n}]\n\n\n"
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readOne",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/5c548937eed0bc363ae41546",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								"5c548937eed0bc363ae41546"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/5c548942eed0bc363ae41548",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								"5c548942eed0bc363ae41548"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"jogging routine 1\",\n    \"desc\": \"great afF\",\n     \"exercises\": [\n        {\"exercise\": \"5c548845fe6407359a47b9d4\", \"qty\": 5},\n        {\"exercise\": \"5c548848fe6407359a47b9d5\", \"qty\": 1}\n    ]\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/api/routine/5c548969eed0bc363ae4154a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"routine",
+								"5c548969eed0bc363ae4154a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

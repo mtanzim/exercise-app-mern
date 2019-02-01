@@ -3,7 +3,7 @@ import { expect } from "chai";
 import * as request from "supertest";
 import * as assert from "assert";
 
-import { CARDIO, STRENGTH} from "../models/common";
+import { CARDIO, STRENGTH } from "../models/common";
 import { createExercise, deleteExercise } from "./common";
 
 const actualExercise = require("./defaultData/actual.default.json");

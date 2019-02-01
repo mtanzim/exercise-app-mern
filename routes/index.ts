@@ -2,6 +2,7 @@ import * as express from "express";
 import userRoutes from "./user.route";
 import exerciseRoutes from "./exercise.route";
 import actualExerciseRoutes from "./actual.route";
+import routineRoutes from "./routine.route";
 
 const createRouter = function() {
   const router = express.Router();
@@ -11,7 +12,7 @@ const createRouter = function() {
     .use("/users", userRoutes)
     .use("/exercise", exerciseRoutes)
     .use("/actual", actualExerciseRoutes)
-    .use("/routine", actualExerciseRoutes);
+    .use("/routine", routineRoutes);
 
   return router;
 };

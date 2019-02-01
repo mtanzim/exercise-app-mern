@@ -17,10 +17,14 @@ export const numberValidator = (min, max) => ({
 export const hostValidator = model => ({
   validator: val => {
     return new Promise((resolve, reject) => {
+      // console.log(val)
       model
         .findById(val)
         .then(res => {
-          // console.log(res)
+          if (res === null) {
+            reject(new Error(`No result for ${val}`));
+          }
+          // console.log(res);
           resolve(true);
         })
         .catch(err => reject(new Error(err)));

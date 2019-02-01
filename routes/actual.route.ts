@@ -6,7 +6,7 @@ import {
   deleteActual
 } from "../controllers/actual.controller";
 
-import { generateResponseFunc, InputType } from "./responseHelpers";
+import { generateResponseFunc, InputType } from "./common";
 
 let router = express.Router();
 

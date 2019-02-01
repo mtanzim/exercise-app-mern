@@ -1,31 +1,29 @@
 import * as express from "express";
 import {
-  createExercise,
-  readExercise,
-  readAllExercise,
-  deleteExercise,
-  softDeleteExercise,
-  updateExercise
-} from "../controllers/exercises.controller";
+  create,
+  read,
+  readAll,
+  update,
+  del,
+} from "../controllers/routine.controller";
 
-import { generateResponseFunc, InputType } from "./responseHelpers";
+import { generateResponseFunc, InputType } from "./common";
 
 let router = express.Router();
 
 /* GET users listing. */
 router
-  .get("/health-check", (req, res, next) => res.send("OK"))
+  .get("/health-check", (req, res, next) => res.send("OK from routine"))
   // create
-  .post("/", generateResponseFunc(InputType.BODY, createExercise))
+  .post("/", generateResponseFunc(InputType.BODY, create))
   // read
-  .get("/:id", generateResponseFunc(InputType.ID, readExercise))
+  .get("/:id", generateResponseFunc(InputType.ID, read))
   // readall
-  .get("/", generateResponseFunc(InputType.NONE, readAllExercise))
+  .get("/", generateResponseFunc(InputType.NONE, readAll))
   // update
-  .put("/:id", generateResponseFunc(InputType.ID_BODY, updateExercise))
+  .put("/:id", generateResponseFunc(InputType.ID_BODY, update))
   // delete
-  .delete("/:id", generateResponseFunc(InputType.ID, deleteExercise))
+  .delete("/:id", generateResponseFunc(InputType.ID, del))
   // soft delete
-  .delete("/soft/:id", generateResponseFunc(InputType.ID, softDeleteExercise));
 
 export default router;

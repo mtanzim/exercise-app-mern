@@ -2,6 +2,7 @@ import ActualExercise from "../models/ActualExercise";
 import * as mongoose from "mongoose";
 import { ObjectID } from "bson";
 const ObjectId = mongoose.Types.ObjectId;
+import { saveModel, readModel, deleteModel } from "./common";
 
 export const createActuals = bodyArr => {
   return Promise.all(
@@ -9,22 +10,20 @@ export const createActuals = bodyArr => {
       // convert to object id
       body.hostExercise = ObjectId(body.hostExercise);
       let newActualExercise = new ActualExercise(body);
-      return newActualExercise.save();
+      return saveModel(newActualExercise);
     })
   );
 };
 
 export const readActual = id => {
-  return ActualExercise.findOne({ _id: id });
+  return readModel(ActualExercise, { _id: id });
 };
 
 export const updateActual = async (id, body) => {
   // validators require host id to ensure wrong exercise sets won't be used
+  // this method has to use a different update mechanism
   const currentActual = await readActual(id);
-  // console.log(body);
   body = { ...body, hostExercise: currentActual["hostExercise"] };
-  // console.log("after update");
-  // console.log(body);
   return ActualExercise.findOneAndUpdate({ _id: id }, body, {
     new: true,
     // for update validators
@@ -33,5 +32,5 @@ export const updateActual = async (id, body) => {
 };
 
 export const deleteActual = id => {
-  return ActualExercise.findOneAndDelete({ _id: id });
+  return deleteModel(ActualExercise, { _id: id });
 };

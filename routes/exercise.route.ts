@@ -8,7 +8,7 @@ import {
   updateExercise
 } from "../controllers/exercises.controller";
 
-import { generateResponseFunc, InputType } from "./responseHelpers";
+import { generateResponseFunc, InputType } from "./common";
 
 let router = express.Router();
 

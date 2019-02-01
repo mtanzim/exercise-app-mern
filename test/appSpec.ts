@@ -6,6 +6,7 @@ console.log(dotEnv.parsed) */
 import connectMongoose from "../db";
 import exerciseSpec from "./exerciseSpec";
 import actualSpec from "./actualSpec";
+import routineSpec from "./routineSpec";
 
 describe("API Mongoose", function() {
   this.timeout(4000);
@@ -13,7 +14,7 @@ describe("API Mongoose", function() {
     connectMongoose(done);
   });
 
-  describe("API.exercise", exerciseSpec);
-  describe("API.actuals", actualSpec);
-  // describe("API.routines", routineSpec);
+  // describe("API.exercise", exerciseSpec);
+  // describe("API.actuals", actualSpec);
+  describe("API.routines", routineSpec);
 });

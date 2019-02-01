@@ -1,7 +1,5 @@
 import app from "../app";
-import * as fs from "fs";
 import { expect } from "chai";
-// const expect = require("chai").expect;
 import * as request from "supertest";
 import { createExercise, deleteExercise } from "./common";
 

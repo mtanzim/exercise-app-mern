@@ -8,7 +8,8 @@ interface Params {
 export const saveModel = newDoc => newDoc.save();
 export const readModel = (model, params: Params) => model.findOne(params);
 export const readAllModels = model => model.find({});
-export const updateModel = (model, params: Params, update: object) =>
-  model.findOneAndUpdate(params, update, { new: true })
+export const updateModel = (model, params: Params, update: object) => {
+  return model.findOneAndUpdate(params, update, { new: true });
+};
 export const deleteModel = (model, params: Params) =>
   model.findOneAndDelete(params);

@@ -3,6 +3,7 @@ import userRoutes from "./user.route";
 import exerciseRoutes from "./exercise.route";
 import actualExerciseRoutes from "./actual.route";
 import routineRoutes from "./routine.route";
+import journalRoutes from "./journal.route";
 
 const createRouter = function() {
   const router = express.Router();
@@ -12,7 +13,8 @@ const createRouter = function() {
     .use("/users", userRoutes)
     .use("/exercise", exerciseRoutes)
     .use("/actual", actualExerciseRoutes)
-    .use("/routine", routineRoutes);
+    .use("/routine", routineRoutes)
+    .use("/journal", journalRoutes);
 
   return router;
 };

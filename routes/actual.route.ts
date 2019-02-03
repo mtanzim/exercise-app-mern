@@ -2,6 +2,7 @@ import * as express from "express";
 import {
   createActuals,
   readActual,
+  readAllActual,
   updateActual,
   deleteActual
 } from "../controllers/actual.controller";
@@ -17,6 +18,7 @@ router
   // read
   .get(`/:id`, generateResponseFunc(InputType.ID, readActual))
   // readAll
+  .get(`/`, generateResponseFunc(InputType.NONE, readAllActual))
   // readAllByParent
   // update
   .put(`/:id`, generateResponseFunc(InputType.ID_BODY, updateActual))

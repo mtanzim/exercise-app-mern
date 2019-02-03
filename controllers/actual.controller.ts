@@ -2,7 +2,7 @@ import ActualExercise from "../models/ActualExercise";
 import * as mongoose from "mongoose";
 import { ObjectID } from "bson";
 const ObjectId = mongoose.Types.ObjectId;
-import { saveModel, readModel, deleteModel } from "./common";
+import { saveModel, readModel, readAllModels, deleteModel } from "./common";
 
 export const createActuals = bodyArr => {
   return Promise.all(
@@ -17,6 +17,9 @@ export const createActuals = bodyArr => {
 
 export const readActual = id => {
   return readModel(ActualExercise, { _id: id });
+};
+export const readAllActual = () => {
+  return readAllModels(ActualExercise);
 };
 
 export const updateActual = async (id, body) => {

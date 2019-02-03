@@ -16,5 +16,5 @@ describe("API Mongoose", function() {
 
   // describe("API.exercise", exerciseSpec);
   // describe("API.actuals", actualSpec);
-  describe("API.routines", routineSpec);
+  describe("API.routines", routineSpec(true));
 });

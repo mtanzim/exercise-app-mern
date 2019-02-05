@@ -1,7 +1,7 @@
 import app from "../app";
 import { expect } from "chai";
 import * as request from "supertest";
-import { createExercise, deleteExercise } from "./common";
+import { createExercise, deleteExercise, createBadExercise } from "./common";
 
 const exerciseSpec = function() {
   let exerciseTemplates: object[] = [];
@@ -15,6 +15,41 @@ const exerciseSpec = function() {
 
   it("POST exercise templates", async () => {
     exerciseTemplates = await createExercise();
+  });
+
+  it("POST BAD exercise templates", async () => {
+    await createBadExercise();
+  });
+
+  it("UPDATE exercise templates", async () => {
+    await Promise.all(
+      exerciseTemplates.map(async (curExercise, i) => {
+        const title = `NEW NAME ${i}`;
+        const res = await request(app)
+          .put(`/api/exercise/${curExercise["_id"]}`)
+          .set("Accept", "application/json")
+          .send({ title })
+          .expect(200);
+        expect(JSON.parse(res.text)["title"]).to.equal(title);
+      })
+    );
+  });
+
+  it("UPDATE BAD exercise templates", async () => {
+    await Promise.all(
+      exerciseTemplates.slice(0,1).map(async (curExercise, i) => {
+        const title = `NEW NAME TOOOOOOOOOOOOOO LONG ${i}`;
+        try {
+          const res = await request(app)
+            .put(`/api/exercise/${curExercise["_id"]}`)
+            .set("Accept", "application/json")
+            .send({ title })
+            .expect(500);
+        } catch(err) {
+          expect(err).to.be.an('error');
+        }
+      })
+    );
   });
 
   it("READ exercise templates", async () => {

@@ -2,7 +2,7 @@ import * as assert from "assert";
 import { expect } from "chai";
 import * as request from "supertest";
 import app from "../app";
-import { createActualExercise, createExercise, deleteActualExercise, deleteExercise } from "./common";
+import { createActualExercise, createBadActual, createExercise, deleteActualExercise, deleteExercise } from "./common";
 
 
 const actualSpec = function() {
@@ -27,6 +27,10 @@ const actualSpec = function() {
   it("POST actual exercises", async () => {
     allIds = await createActualExercise(exerciseTemplates);
   });
+  it("POST actual BAD exercises", async () => {
+    await createBadActual(exerciseTemplates);
+  });
+
 
   it("GET actual exercises", async () => {
     await Promise.all(
@@ -61,6 +65,10 @@ const actualSpec = function() {
           });
       })
     );
+  });
+
+  it("UPDATE actual BAD exercises", async () => {
+    await createBadActual(exerciseTemplates, true, allIds);
   });
 
   it("Delete actual exercises", async () => {

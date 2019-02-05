@@ -1,8 +1,7 @@
-import ActualExercise from "../models/ActualExercise";
 import * as mongoose from "mongoose";
-import { ObjectID } from "bson";
+import ActualExercise from "../models/ActualExercise";
+import { deleteModel, readAllModels, readModel, saveModel } from "./common";
 const ObjectId = mongoose.Types.ObjectId;
-import { saveModel, readModel, readAllModels, deleteModel } from "./common";
 
 export const createActuals = bodyArr => {
   return Promise.all(

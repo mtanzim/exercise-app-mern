@@ -4,7 +4,24 @@ import app from "../app";
 import { CARDIO, STRENGTH } from "../models/common";
 
 const defaultExercise = require("./defaultData/exercise.default");
+const defaultBadExercise: object[] = require("./defaultData/exercise.default.bad");
 const actualExercise = require("./defaultData/actual.default.json");
+
+export const createBadExercise = async (isPut = false) => {
+  await Promise.all(
+    defaultBadExercise.map(async curBadExercise => {
+      try {
+        await request(app)
+          .post(`/api/exercise/`)
+          .set("Accept", "application/json")
+          .send([curBadExercise])
+          .expect(500);
+      } catch (err) {
+        expect(err).to.be.an("error");
+      }
+    })
+  );
+};
 
 export const createExercise = async () => {
   const res = await request(app)
@@ -34,6 +51,59 @@ export const deleteExercise = async exerciseTemplates => {
         });
     })
   );
+};
+
+export const createBadActual = async (
+  exerciseTemplates,
+  isPut = false,
+  actualIds = []
+) => {
+  let badBodies = [];
+
+  exerciseTemplates.forEach(function(template) {
+    badBodies = actualExercise
+      .filter(item => item.timedSets !== undefined)
+      .map(elem => ({
+        ...elem,
+        weightedSets: [
+          {
+            weightUnit: "bad"
+          }
+        ],
+        timeddSets: [
+          {
+            timeUnit: "bad"
+          }
+        ],
+        hostExercise: template["_id"]
+      }));
+  });
+
+  try {
+    if (isPut) {
+      await Promise.all(
+        actualIds.map(async id => {
+          try {
+            await request(app)
+              .put(`/api/actual/${id}`)
+              .set("Accept", "application/json")
+              .send(badBodies[0])
+              .expect(500);
+          } catch (err) {
+            expect(err).to.be.an("error");
+          }
+        })
+      );
+    } else {
+      await request(app)
+        .post(`/api/actual/`)
+        .set("Accept", "application/json")
+        .send(badBodies)
+        .expect(500);
+    }
+  } catch (err) {
+    expect(err).to.be.an("error");
+  }
 };
 
 export const createActualExercise = async exerciseTemplates => {

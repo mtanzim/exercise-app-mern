@@ -15,8 +15,8 @@ describe("API Mongoose", function() {
     connectMongoose(done);
   });
 
-  // describe("API.exercise", exerciseSpec);
-  // describe("API.actuals", actualSpec);
-  // describe("API.routines", routineSpec(true));
+  describe("API.exercise", exerciseSpec);
+  describe("API.actuals", actualSpec);
+  describe("API.routines", routineSpec(true));
   describe("API.journals", journalSpec);
 });

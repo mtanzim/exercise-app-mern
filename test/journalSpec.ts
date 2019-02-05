@@ -53,9 +53,7 @@ const journalSpec = function() {
       .expect(200);
     const result = JSON.parse(res.text);
     const result_ids = result.map(a => a["_id"]);
-    console.log(result_ids);
     expect(result_ids).to.have.lengthOf(journalIds.length);
-
   });
   it("READ EACH Journal", async () => {
     await Promise.all(

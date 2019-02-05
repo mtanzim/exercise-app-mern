@@ -1,7 +1,17 @@
 [{
   "title": "jogging routine xyx234234",
-  "desc": "great afF"
+  "desc": "great afF",
+  "exercises": [{
+    "qty": 0,
+    "exercise": ""
+
+  }]
 }, {
   "title": "jogging routine xyx222",
-  "desc": "great afFff3324234"
+  "desc": "great afFff3324234",
+  "exercises": [{
+    "qty": 0,
+    "exercise": ""
+
+  }]
 }]

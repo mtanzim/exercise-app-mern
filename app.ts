@@ -26,7 +26,7 @@ app.use("/api", createRouter());
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   let error = new Error("Not found!");
-  next(error);
+  return next(error);
 });
 
 // error handler

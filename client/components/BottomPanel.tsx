@@ -1,7 +1,10 @@
 import * as React from "react";
+// import SvgUri from 'react-native-svg-uri';
 import { Text, View, StyleSheet } from "react-native";
 
-import BottomPanelButton from "./BottomPanelButton";
+
+
+import {BottomPanelButton} from "./BottomPanelButton";
 
 export default class BottomPanel extends React.Component {
   public panelInfo: string = "bottomPanel";
@@ -16,7 +19,7 @@ export default class BottomPanel extends React.Component {
       <View style={styles.panelContainer}>
         {/* <Text>{this.panelInfo}</Text> */}
         {this.buttonIds.map(id => (
-          <BottomPanelButton key={id} />
+          <BottomPanelButton svgLink={"assets/icons/clock.svg"} key={id} />
         ))}
       </View>
     );

@@ -3,15 +3,18 @@ import { StyleSheet, Text, View } from "react-native";
 
 import DummyComponent from "./components/DummyComponent";
 import BottomPanel from "./components/BottomPanel";
+import Header from "./components/Header";
+import Layout from "./components/Layout"
+
+import {protoStyles} from "./components/prototypeStyles"
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <DummyComponent/>
-        <BottomPanel/>
-      </View>
-    );
+        <Layout>
+          <DummyComponent title="dummyString"/>
+        </Layout>
+    )
   }
 }
 
@@ -22,8 +25,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "orange",
-    borderWidth: 2,
-    borderStyle: "solid"
   }
 });

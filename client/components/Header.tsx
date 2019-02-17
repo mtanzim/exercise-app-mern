@@ -12,6 +12,7 @@ export default class Header extends React.Component<HeaderComponent, {}> {
     return (
       <View style={[styles.header, protoStyles.border]}>
         <Text>{this.props.title}</Text>
+        {/* <Text>{this.props.pageTitle}</Text> */}
       </View>
     );
   }

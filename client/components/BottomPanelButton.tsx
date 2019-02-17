@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
-import {protoStyles} from "./prototypeStyles"
-
+import { protoStyles } from "./prototypeStyles";
+import { ReactElement } from "react";
 
 export interface BottomPanelButtonProp {
   title: string;
   btnWidth: string;
+  children: ReactElement<any,any>,
 }
 
 export class BottomPanelButton extends React.Component<
@@ -14,7 +15,15 @@ export class BottomPanelButton extends React.Component<
 > {
   public render() {
     return (
-      <View style={[styles.panelContainer, protoStyles.borderB, protoStyles.protoBG, {width: this.props.btnWidth}]}>
+      <View
+        style={[
+          styles.panelContainer,
+          protoStyles.borderB,
+          protoStyles.protoBG,
+          { width: this.props.btnWidth }
+        ]}
+      >
+        {this.props.children}
         <Text>{this.props.title}</Text>
       </View>
     );
@@ -30,6 +39,6 @@ const styles = StyleSheet.create({
     // marginHorizontal: 10,
     opacity: 0.7,
     backgroundColor: "#fff",
-    justifyContent: "center",
+    justifyContent: "center"
   }
 });

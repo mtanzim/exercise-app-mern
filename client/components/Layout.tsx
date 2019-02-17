@@ -7,7 +7,7 @@ import BottomPanel from "./BottomPanel";
 import {protoStyles} from "./prototypeStyles"
 
 interface ILayout {
-  children:React.ReactChildren;
+  children:Element;
 }
 
 export default class Layout extends React.Component<ILayout,{}> {
